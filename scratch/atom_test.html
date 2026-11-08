@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  body {
+    background: #000;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+
+  .atom-wrapper {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1000px;
+  }
+
+  .atom-center-logo {
+    position: relative;
+    z-index: 10;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .atom-center-glow {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 229, 255, 0.4) 0%, rgba(0, 229, 255, 0) 70%);
+    filter: blur(12px);
+    pointer-events: none;
+    animation: atomPulse 2s ease-in-out infinite alternate;
+  }
+
+  .atom-ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  /* Ring 1 - Horizontal */
+  .atom-ring-1-track {
+    transform: rotateX(72deg) rotateY(0deg);
+    border: 1px dashed rgba(0, 229, 255, 0.25);
+  }
+  .atom-ring-1-spin {
+    transform: rotateX(72deg) rotateY(0deg);
+    animation: spinRing1 1.6s linear infinite;
+  }
+
+  /* Ring 2 - Tilted 60 deg */
+  .atom-ring-2-track {
+    transform: rotateZ(60deg) rotateX(72deg);
+    border: 1px dashed rgba(0, 229, 255, 0.25);
+  }
+  .atom-ring-2-spin {
+    transform: rotateZ(60deg) rotateX(72deg);
+    animation: spinRing2 1.9s linear infinite reverse;
+  }
+
+  /* Ring 3 - Tilted 120 deg */
+  .atom-ring-3-track {
+    transform: rotateZ(120deg) rotateX(72deg);
+    border: 1px dashed rgba(0, 229, 255, 0.25);
+  }
+  .atom-ring-3-spin {
+    transform: rotateZ(120deg) rotateX(72deg);
+    animation: spinRing3 2.2s linear infinite;
+  }
+
+  @keyframes spinRing1 {
+    0% { transform: rotateX(72deg) rotateY(0deg) rotateZ(0deg); }
+    100% { transform: rotateX(72deg) rotateY(0deg) rotateZ(360deg); }
+  }
+
+  @keyframes spinRing2 {
+    0% { transform: rotateZ(60deg) rotateX(72deg) rotateZ(0deg); }
+    100% { transform: rotateZ(60deg) rotateX(72deg) rotateZ(360deg); }
+  }
+
+  @keyframes spinRing3 {
+    0% { transform: rotateZ(120deg) rotateX(72deg) rotateZ(0deg); }
+    100% { transform: rotateZ(120deg) rotateX(72deg) rotateZ(360deg); }
+  }
+
+  @keyframes atomPulse {
+    0% { transform: scale(0.9); opacity: 0.6; }
+    100% { transform: scale(1.15); opacity: 1; }
+  }
+
+  .arc {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1.5px solid transparent;
+    border-top: 2px solid #00e5ff;
+    border-right: 1.5px solid rgba(0, 229, 255, 0.5);
+    filter: drop-shadow(0 0 6px #00e5ff);
+  }
+
+  .electron {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #ffffff;
+    box-shadow: 0 0 6px #00e5ff, 0 0 10px #00e5ff;
+  }
+</style>
+</head>
+<body>
+  <div class="atom-wrapper">
+    <div class="atom-center-glow"></div>
+    <div class="atom-center-logo">
+      <img src="public/brand/logo.png" style="width: 100%; height: 100%; object-fit: contain;">
+    </div>
+
+    <!-- Ring 1 -->
+    <div class="atom-ring atom-ring-1-track"></div>
+    <div class="atom-ring atom-ring-1-spin">
+      <div class="arc"></div>
+      <div class="electron"></div>
+    </div>
+
+    <!-- Ring 2 -->
+    <div class="atom-ring atom-ring-2-track"></div>
+    <div class="atom-ring atom-ring-2-spin">
+      <div class="arc"></div>
+      <div class="electron"></div>
+    </div>
+
+    <!-- Ring 3 -->
+    <div class="atom-ring atom-ring-3-track"></div>
+    <div class="atom-ring atom-ring-3-spin">
+      <div class="arc"></div>
+      <div class="electron"></div>
+    </div>
+  </div>
+</body>
+</html>
